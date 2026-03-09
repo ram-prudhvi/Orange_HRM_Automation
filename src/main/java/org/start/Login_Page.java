@@ -1,5 +1,7 @@
 package org.start;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,14 +19,14 @@ public class Login_Page extends Base_Page {
     @FindBy(xpath = "//button[@type=\"submit\"]")
     WebElement loginbutton;
 
-@FindBy(xpath = "//h6[text()=\"Dashboard\"]") WebElement dash;
+ //@FindBy(xpath = "//h6[text()=\"Dashboard\"]") WebElement dash;
     public void login(String uname, String password) throws InterruptedException {
         Thread.sleep(5000);
         username.sendKeys(uname);
         passwords.sendKeys(password);
         loginbutton.click();
         Thread.sleep(5000);
-        System.out.println(dash.isDisplayed());
+       // System.out.println(dash.isDisplayed());
 
     }
 }
