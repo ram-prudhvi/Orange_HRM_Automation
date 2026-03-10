@@ -3,15 +3,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.start.Base_Page_1;
 import org.start.Signup;
+import org.start.createaccount;
 import org.testng.Assert;
-import org.testng.ITestListener;
 import org.testng.TestListenerAdapter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class Sign_up extends TestListenerAdapter {
+public class Sign_up_create_account extends TestListenerAdapter {
     WebDriver driver;
     @FindBy(xpath = "//b[normalize-space()='Enter Account Information']") WebElement check;
     @BeforeClass
@@ -29,13 +28,19 @@ public class Sign_up extends TestListenerAdapter {
     }
 
     @Test(priority = 2)
-    public void check()
-    {
+    public void check() throws InterruptedException {
        String display= check.getText();
        String expected ="ENTER ACCOUNT INFORMATION";
         Assert.assertEquals(display,expected);
+        Thread.sleep(5000);
     }
     @Test(priority = 3)
+    public void creating() throws InterruptedException {
+        createaccount obj =new createaccount(driver);
+        obj.radiobutton("Mr.","ram@1234");
+        obj.days_select("1","March","2020");
+    }
+   // @Test(priority = 4)
     public void quit()
     {
         driver.quit();
