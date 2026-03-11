@@ -3,6 +3,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.start.Addressfill;
 import org.start.Signup;
 import org.start.createaccount;
 import org.testng.Assert;
@@ -32,13 +33,20 @@ public class Sign_up_create_account extends TestListenerAdapter {
        String display= check.getText();
        String expected ="ENTER ACCOUNT INFORMATION";
         Assert.assertEquals(display,expected);
-        Thread.sleep(5000);
+        Thread.sleep(7000);
     }
     @Test(priority = 3)
     public void creating() throws InterruptedException {
         createaccount obj =new createaccount(driver);
         obj.radiobutton("Mr.","ram@1234");
         obj.days_select("1","March","2020");
+    }
+
+    @Test(priority = 4)
+    public void account()
+    {
+        Addressfill obj =new Addressfill(driver);
+        obj.Address("ram","prudhvi","ratna","Hyd","Canada", "Tl","gach","50001","1234567890");
     }
    // @Test(priority = 4)
     public void quit()
