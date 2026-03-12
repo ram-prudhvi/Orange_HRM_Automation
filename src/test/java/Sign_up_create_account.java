@@ -1,6 +1,8 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.start.Addressfill;
@@ -9,15 +11,25 @@ import org.start.createaccount;
 import org.testng.Assert;
 import org.testng.TestListenerAdapter;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+
 public class Sign_up_create_account extends TestListenerAdapter {
+
     WebDriver driver;
     @FindBy(xpath = "//b[normalize-space()='Enter Account Information']") WebElement check;
     @BeforeClass
-    public void launchig()
+    @Parameters({"os","browser"})
+    public void launchig(String os, String br)
     {
-        driver=new ChromeDriver();
+        switch (br.toLowerCase()) {
+            case "chrome" : driver=new ChromeDriver(); break;
+            case "safari" : driver=new SafariDriver(); break;
+            case "firefox" : driver=new FirefoxDriver(); break;
+            default: System.out.println("Invalid Browser name"); return;
+        }
+        driver.manage().deleteAllCookies();
         driver.get("https://automationexercise.com/");
         driver.manage().window().maximize();
         PageFactory.initElements(driver, this);
@@ -25,7 +37,7 @@ public class Sign_up_create_account extends TestListenerAdapter {
     @Test(priority = 1)
     public void signing() throws InterruptedException {
         Signup obj=new Signup(driver);
-        obj.launch("ram","prudhvi@gmail.com");
+        obj.launch("ram1","prudhvi1@gmail.com");
     }
 
     @Test(priority = 2)

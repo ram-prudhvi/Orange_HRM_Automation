@@ -14,6 +14,8 @@ public class login_auto extends Base_Page_1{
     @FindBy(xpath = "//input[@placeholder='Password']") WebElement pass;
     @FindBy(xpath = "//button[normalize-space()='Login']") WebElement lbutton;
 
+
+
     public void loging(String email, String password)
     {
         Signupbutton.click();
